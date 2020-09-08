@@ -1,0 +1,15 @@
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\bin\Debug\KnowledgeDesk.exe.config
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\bin\Debug\KnowledgeDesk.exe
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\bin\Debug\KnowledgeDesk.pdb
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.csprojAssemblyReference.cache
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.frmKnowledge.resources
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.Properties.Resources.resources
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.csproj.GenerateResource.cache
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.csproj.CoreCompileInputs.cache
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.exe
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.pdb
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.CommonFrm.Floor.AddFloor.resources
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.csproj.CopyComplete
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\bin\Debug\KnowledgeModel.dll
+C:\Users\Aukey\source\repos\KnowledgeDesk\KnowledgeDesk\obj\Debug\KnowledgeDesk.CommonFrm.Room.AddRoom.resources
