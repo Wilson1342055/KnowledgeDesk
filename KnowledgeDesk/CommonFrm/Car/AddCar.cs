@@ -72,6 +72,7 @@ namespace KnowledgeDesk.CommonFrm.Car
             car.CreateTime = DateTime.Now;
             car.IsStop = 0;
             car.EmployeeID = 1;
+            car.Points = 0.8M;
             string strPost = JsonConvert.SerializeObject(car);
             ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Car/AddCar", strPost, "Post", ref strErr);
             if (result.Data[0].Success)

@@ -245,6 +245,7 @@
             this.Controls.Add(this.lbRoom);
             this.Controls.Add(this.lbFloor);
             this.Name = "Answer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "答题";
             this.Load += new System.EventHandler(this.Answer_Load);
             this.ResumeLayout(false);

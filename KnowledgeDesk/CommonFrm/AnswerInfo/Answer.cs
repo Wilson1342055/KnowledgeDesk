@@ -26,20 +26,25 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
         private void Answer_Load(object sender, EventArgs e)
         {
             //获取题目
+            GetQuestion();
+
+        }
+
+        private void GetQuestion()
+        {
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
-            string strPost = "EmployeeID=1&IsRandom="+IsRandom.ToString();
+            string strPost = "EmployeeID=1&IsRandom=" + IsRandom.ToString();
             ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Car/GetCarAnswer", strPost, "Get", ref strErr);
             DataTable dt = result.DTData;
             this.lbFloor.Text = dt.Rows[0]["FloorName"].ToString();
-            this.lbRoom.Text= dt.Rows[0]["RoomName"].ToString();
-            this.txtQuestion.Text= dt.Rows[0]["CarQuestion"].ToString();
-            this.txtAnswer.Text= dt.Rows[0]["CarAnswer"].ToString();
-            this.lbCarID.Text= dt.Rows[0]["CarID"].ToString();
+            this.lbRoom.Text = dt.Rows[0]["RoomName"].ToString();
+            this.txtQuestion.Text = dt.Rows[0]["CarQuestion"].ToString();
+            this.txtReal.Text = dt.Rows[0]["CarAnswer"].ToString();
+            this.lbCarID.Text = dt.Rows[0]["CarID"].ToString();
             this.lbPoints.Text = dt.Rows[0]["Points"].ToString();
             //设置宽度  414
             this.Width = 414;
-
         }
 
         private void btnCommit_Click(object sender, EventArgs e)
@@ -60,6 +65,7 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
                 this.lbAnswerID.Text = result.Data[0].DocumentNo;
                 this.Width = 802;
                 this.btnCommit.Enabled = false;
+                this.btnNext.Enabled = true;
             }
             else
             {
@@ -74,7 +80,7 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
 
             //更新答题结果
             AnswerInfoModel model = new AnswerInfoModel();
-            model.AnswerResult = this.txtAnswer.Text;
+            model.AnswerResult = strResult;
             model.AnswerInfoID = Convert.ToInt32(this.lbAnswerID.Text);
             string strPost = JsonConvert.SerializeObject(model);
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
@@ -111,6 +117,16 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
                     return;
                 }
             }
+
+            this.txtAnswer.Text = "";
+            this.txtQuestion.Text = "";
+            this.txtReal.Text = "";
+            this.btnCommit.Enabled = true;
+            this.btnNext.Enabled = false;
+            this.rbnlike.Checked = false;
+            this.rbnno.Checked = false;
+            this.rbnyes.Checked = false;
+            GetQuestion();
         }
 
         private void rbnno_CheckedChanged(object sender, EventArgs e)

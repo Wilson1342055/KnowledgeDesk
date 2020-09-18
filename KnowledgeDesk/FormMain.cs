@@ -1,4 +1,5 @@
-﻿using KnowledgeDesk.CommonFrm.Car;
+﻿using KnowledgeDesk.CommonFrm.AnswerInfo;
+using KnowledgeDesk.CommonFrm.Car;
 using KnowledgeDesk.CommonFrm.Floor;
 using KnowledgeDesk.CommonFrm.Room;
 using KnowledgeModel.Common;
@@ -144,6 +145,18 @@ namespace KnowledgeDesk
             {
                 QueryCar();
             }
+        }
+
+        private void btnRandom_Click(object sender, EventArgs e)
+        {
+            Answer frm = new Answer();
+            frm.IsRandom = 1;
+            frm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
