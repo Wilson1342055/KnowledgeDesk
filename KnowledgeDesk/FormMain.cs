@@ -1,4 +1,5 @@
-﻿using KnowledgeDesk.CommonFrm.Floor;
+﻿using KnowledgeDesk.CommonFrm.Car;
+using KnowledgeDesk.CommonFrm.Floor;
 using KnowledgeDesk.CommonFrm.Room;
 using KnowledgeModel.Common;
 using System;
@@ -40,6 +41,7 @@ namespace KnowledgeDesk
             //dt.Rows.Add(dr);
             QueryFloor();
             QueryRoom();
+            QueryCar();
         }
 
         private void btnAddFloor_Click(object sender, EventArgs e)
@@ -56,7 +58,16 @@ namespace KnowledgeDesk
         {
 
         }
+        private void QueryCar()
+        {
+            KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
+            string strErr = "";
+            string strPost = "EmployeeID=1";
+            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Car/QueryCar", strPost, "Get", ref strErr);
 
+            this.dgvCar.DataSource = result.DTData;
+            AutoSize(dgvCar);
+        }
         private void QueryFloor()
         {
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
@@ -123,6 +134,15 @@ namespace KnowledgeDesk
             for (int i = 0; i < dgv.Columns.Count; i++)
             {
                 dgv.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+        }
+
+        private void btnAddCar_Click(object sender, EventArgs e)
+        {
+            AddCar frm = new AddCar();
+            if (frm.ShowDialog() == DialogResult.Yes)
+            {
+                QueryCar();
             }
         }
     }

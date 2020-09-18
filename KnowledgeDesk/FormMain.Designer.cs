@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -42,14 +42,23 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgvRoom = new System.Windows.Forms.DataGridView();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.btnDelRoom = new System.Windows.Forms.Button();
             this.btnAddRoom = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnDelCar = new System.Windows.Forms.Button();
+            this.btnAddCar = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.dgvCar = new System.Windows.Forms.DataGridView();
+            this.Selecte = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnRandom = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFloor)).BeginInit();
@@ -58,6 +67,10 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoom)).BeginInit();
             this.panel3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCar)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -77,6 +90,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.btnRandom);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -109,34 +124,34 @@
             // 
             // dgvFloor
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFloor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFloor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFloor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFloor.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFloor.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvFloor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvFloor.Location = new System.Drawing.Point(0, 0);
             this.dgvFloor.Name = "dgvFloor";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFloor.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFloor.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvFloor.RowTemplate.Height = 23;
             this.dgvFloor.Size = new System.Drawing.Size(817, 419);
             this.dgvFloor.TabIndex = 0;
@@ -208,6 +223,11 @@
             this.dgvRoom.TabIndex = 0;
             this.dgvRoom.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoom_CellClick);
             // 
+            // Selected
+            // 
+            this.Selected.HeaderText = "选择";
+            this.Selected.Name = "Selected";
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.button3);
@@ -250,6 +270,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.panel6);
+            this.tabPage4.Controls.Add(this.panel5);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -268,10 +290,78 @@
             this.tabPage5.Text = "统计";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // Selected
+            // panel5
             // 
-            this.Selected.HeaderText = "选择";
-            this.Selected.Name = "Selected";
+            this.panel5.Controls.Add(this.btnDelCar);
+            this.panel5.Controls.Add(this.btnAddCar);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(817, 65);
+            this.panel5.TabIndex = 1;
+            // 
+            // btnDelCar
+            // 
+            this.btnDelCar.Location = new System.Drawing.Point(158, 15);
+            this.btnDelCar.Name = "btnDelCar";
+            this.btnDelCar.Size = new System.Drawing.Size(92, 29);
+            this.btnDelCar.TabIndex = 2;
+            this.btnDelCar.Text = "删牌";
+            this.btnDelCar.UseVisualStyleBackColor = true;
+            // 
+            // btnAddCar
+            // 
+            this.btnAddCar.Location = new System.Drawing.Point(34, 15);
+            this.btnAddCar.Name = "btnAddCar";
+            this.btnAddCar.Size = new System.Drawing.Size(92, 29);
+            this.btnAddCar.TabIndex = 1;
+            this.btnAddCar.Text = "加牌";
+            this.btnAddCar.UseVisualStyleBackColor = true;
+            this.btnAddCar.Click += new System.EventHandler(this.btnAddCar_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.dgvCar);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(3, 68);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(817, 413);
+            this.panel6.TabIndex = 2;
+            // 
+            // dgvCar
+            // 
+            this.dgvCar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Selecte});
+            this.dgvCar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCar.Location = new System.Drawing.Point(0, 0);
+            this.dgvCar.Name = "dgvCar";
+            this.dgvCar.RowTemplate.Height = 23;
+            this.dgvCar.Size = new System.Drawing.Size(817, 413);
+            this.dgvCar.TabIndex = 0;
+            // 
+            // Selecte
+            // 
+            this.Selecte.HeaderText = "选择";
+            this.Selecte.Name = "Selecte";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(229, 58);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(101, 43);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "弱点模式";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnRandom
+            // 
+            this.btnRandom.Location = new System.Drawing.Point(73, 58);
+            this.btnRandom.Name = "btnRandom";
+            this.btnRandom.Size = new System.Drawing.Size(101, 43);
+            this.btnRandom.TabIndex = 2;
+            this.btnRandom.Text = "随机模式";
+            this.btnRandom.UseVisualStyleBackColor = true;
             // 
             // frmKnowledge
             // 
@@ -284,6 +374,7 @@
             this.Text = "知识宫殿";
             this.Load += new System.EventHandler(this.frmKnowledge_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFloor)).EndInit();
@@ -292,6 +383,10 @@
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoom)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -316,6 +411,14 @@
         private System.Windows.Forms.Button btnDelRoom;
         private System.Windows.Forms.Button btnAddRoom;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.DataGridView dgvCar;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selecte;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnDelCar;
+        private System.Windows.Forms.Button btnAddCar;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRandom;
     }
 }
 

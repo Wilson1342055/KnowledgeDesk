@@ -55,6 +55,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionHelper\WebAPIHelper.cs" />
+    <Compile Include="CommonFrm\AnswerInfo\Answer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonFrm\AnswerInfo\Answer.Designer.cs">
+      <DependentUpon>Answer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonFrm\Car\AddCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonFrm\Car\AddCar.Designer.cs">
+      <DependentUpon>AddCar.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommonFrm\Floor\AddFloor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +88,12 @@
     <Compile Include="Model\Common\ResponseDataModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CommonFrm\AnswerInfo\Answer.resx">
+      <DependentUpon>Answer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonFrm\Car\AddCar.resx">
+      <DependentUpon>AddCar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommonFrm\Floor\AddFloor.resx">
       <DependentUpon>AddFloor.cs</DependentUpon>
     </EmbeddedResource>
