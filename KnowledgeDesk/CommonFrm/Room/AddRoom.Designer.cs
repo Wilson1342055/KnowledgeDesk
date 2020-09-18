@@ -35,7 +35,7 @@
             this.btnSure = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtFloor = new System.Windows.Forms.TextBox();
+            this.cmbFloor = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -100,19 +100,21 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "所在楼层：";
             // 
-            // txtFloor
+            // cmbFloor
             // 
-            this.txtFloor.Location = new System.Drawing.Point(98, 56);
-            this.txtFloor.Name = "txtFloor";
-            this.txtFloor.Size = new System.Drawing.Size(229, 21);
-            this.txtFloor.TabIndex = 7;
+            this.cmbFloor.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmbFloor.FormattingEnabled = true;
+            this.cmbFloor.Location = new System.Drawing.Point(98, 52);
+            this.cmbFloor.Name = "cmbFloor";
+            this.cmbFloor.Size = new System.Drawing.Size(229, 24);
+            this.cmbFloor.TabIndex = 7;
             // 
             // AddRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 298);
-            this.Controls.Add(this.txtFloor);
+            this.Controls.Add(this.cmbFloor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSure);
@@ -123,6 +125,7 @@
             this.Name = "AddRoom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "维护房间";
+            this.Load += new System.EventHandler(this.AddRoom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,6 +140,6 @@
         private System.Windows.Forms.Button btnSure;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtFloor;
+        private System.Windows.Forms.ComboBox cmbFloor;
     }
 }

@@ -112,6 +112,7 @@
             this.btnNo.TabIndex = 6;
             this.btnNo.Text = "不会";
             this.btnNo.UseVisualStyleBackColor = true;
+            this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
             // 
             // btnCommit
             // 

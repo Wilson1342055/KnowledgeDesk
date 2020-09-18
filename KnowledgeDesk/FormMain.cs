@@ -3,6 +3,7 @@ using KnowledgeDesk.CommonFrm.Car;
 using KnowledgeDesk.CommonFrm.Floor;
 using KnowledgeDesk.CommonFrm.Room;
 using KnowledgeModel.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,7 +58,30 @@ namespace KnowledgeDesk
 
         private void btnDelFloor_Click(object sender, EventArgs e)
         {
-
+            string strFloorIDs = "";
+            foreach (DataGridViewRow row in dgvFloor.Rows)
+            {
+                if (row.Cells["colSelected"].Value != null && (bool)row.Cells["colSelected"].Value)
+                {
+                    strFloorIDs += row.Cells["FloorID"].Value.ToString() + ",";
+                }
+            }
+            //验证有没有房间
+            KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
+            string strErr = "";
+            string strPost = "FloorID=" + strFloorIDs.TrimEnd(',');
+            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Room/QueryRoomByFloorID", strPost, "Get", ref strErr);
+            if (result.DTData.Rows.Count > 0)
+            {
+                MessageBox.Show("选择楼层中存在房间，操作失败");
+                return;
+            }
+            else
+            {
+                ExecResult resultDel = webapi.ExecuteResultList("http://localhost:54072/api/Floor/DelFloor", strPost, "Get", ref strErr);
+                MessageBox.Show("操作成功");
+                QueryRoom();
+            }
         }
         private void QueryCar()
         {
@@ -104,13 +128,33 @@ namespace KnowledgeDesk
 
         private void btnDelRoom_Click(object sender, EventArgs e)
         {
+            string strRoomIDs = "";
             foreach (DataGridViewRow row in dgvRoom.Rows)
             {
                 if (row.Cells["Selected"].Value != null && (bool)row.Cells["Selected"].Value)
                 {
-                    MessageBox.Show(row.Cells["RoomName"].Value.ToString());
+                    strRoomIDs+=row.Cells["RoomID"].Value.ToString()+",";
                 }
             }
+
+            //验证有没有卡牌
+            KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
+            string strErr = "";
+            string strPost = "RoomIDs="+strRoomIDs.TrimEnd(',');
+            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Car/QueryCarByRoomIDs", strPost, "Get", ref strErr);
+            if(result.DTData.Rows.Count>0)
+            {
+                MessageBox.Show("选择房间中存在卡牌，操作失败");
+                return;
+            }
+            else
+            {
+                string postpara = "IDs=" + strRoomIDs.TrimEnd(',') ;
+                ExecResult resultDel = webapi.ExecuteResultList("http://localhost:54072/api/Room/DelRoom", postpara, "Get", ref strErr);
+                MessageBox.Show("操作成功");
+                QueryRoom();
+            }
+
         }
 
         private void dgvRoom_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -156,7 +200,26 @@ namespace KnowledgeDesk
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Answer frm = new Answer();
+            frm.IsRandom = 0;
+            frm.ShowDialog();
+        }
 
+        private void dgvFloor_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
+
+            if (dgvRoom.Columns[e.ColumnIndex].Name != "Selected") return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgvFloor.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (cell.Value != null && (bool)cell.Value)
+            {
+                cell.Value = false;
+            }
+            else
+            {
+                cell.Value = true;
+            }
         }
     }
 }

@@ -155,5 +155,35 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
                 strResult = rb.Text;
             }
         }
+
+        private void btnNo_Click(object sender, EventArgs e)
+        {
+            KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
+            string strErr = "";
+            CarModel car = new CarModel();
+            car.CarID = Convert.ToInt32(this.lbCarID.Text);
+            car.Points = 0.6M;
+            string strPostCar = JsonConvert.SerializeObject(car);
+            ExecResult resultCar = webapi.ExecuteResultList("http://localhost:54072/api/Car/UpdateCar", strPostCar, "Post", ref strErr);
+            if (resultCar.Data[0].Success)
+            {
+                //设置宽度
+                this.Width = 414;
+            }
+            else
+            {
+                MessageBox.Show("操作失败，请重试");
+                return;
+            }
+            this.txtAnswer.Text = "";
+            this.txtQuestion.Text = "";
+            this.txtReal.Text = "";
+            this.btnCommit.Enabled = true;
+            this.btnNext.Enabled = false;
+            this.rbnlike.Checked = false;
+            this.rbnno.Checked = false;
+            this.rbnyes.Checked = false;
+            GetQuestion();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace KnowledgeDesk.CommonFrm.Room
                 MessageBox.Show("请填写房间名称！");
                 return;
             }
-            if (string.IsNullOrEmpty(this.txtFloor.Text.Trim()))
+            if (string.IsNullOrEmpty(this.cmbFloor.Text.Trim()))
             {
                 MessageBox.Show("请填写所在楼层！");
                 return;
@@ -39,7 +39,7 @@ namespace KnowledgeDesk.CommonFrm.Room
             room.RoomDesc = this.txtDes.Text.Trim();
             room.CreateUser = "Admin";
             room.CreateTime = DateTime.Now;
-            room.FloorID = Convert.ToInt32(this.txtFloor.Text.Trim());
+            room.FloorID = Convert.ToInt32(this.cmbFloor.SelectedValue);
             string strPost = JsonConvert.SerializeObject(room);
             ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Room/AddRoom", strPost, "Post", ref strErr);
             if(result.Data[0].Success)
@@ -58,6 +58,20 @@ namespace KnowledgeDesk.CommonFrm.Room
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AddRoom_Load(object sender, EventArgs e)
+        {
+            KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
+            string strErr = "";
+            string strPost = "EmployeeID=1";
+            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Floor/QueryFloor", strPost, "Get", ref strErr);
+
+
+            this.cmbFloor.DataSource = result.DTData;
+            this.cmbFloor.DisplayMember = "楼层";
+            this.cmbFloor.ValueMember = "FloorID";
+            this.cmbFloor.SelectedIndex = -1;
         }
     }
 }
