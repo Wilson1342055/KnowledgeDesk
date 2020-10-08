@@ -2,19 +2,13 @@
 using KnowledgeModel.Common;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KnowledgeDesk.CommonFrm.Car
 {
     public partial class AddCar : Form
     {
+        public int CarID = 0;
         public AddCar()
         {
             InitializeComponent();
@@ -25,7 +19,7 @@ namespace KnowledgeDesk.CommonFrm.Car
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "EmployeeID=1";
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Floor/QueryFloor", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Floor/QueryFloor", strPost, "Get", ref strErr);
 
 
             this.cmbFloor.DataSource = result.DTData;
@@ -33,6 +27,16 @@ namespace KnowledgeDesk.CommonFrm.Car
             this.cmbFloor.ValueMember = "FloorID";
             this.cmbFloor.SelectedIndex = -1;
 
+            if(CarID>0)
+            {
+                strPost = "CarID="+CarID.ToString();
+                result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/QueryCarByID", strPost, "Get", ref strErr);
+                this.txtCarQuestion.Text = result.DTData.Rows[0]["CarQuestion"].ToString();
+                this.txtAnswer.Text= result.DTData.Rows[0]["CarAnswer"].ToString();
+                this.cmbFloor.SelectedValue=Convert.ToInt32(result.DTData.Rows[0]["FloorID"]);
+                this.cmbRoom.SelectedValue = Convert.ToInt32(result.DTData.Rows[0]["RoomID"]);
+                this.lbPoints.Text = result.DTData.Rows[0]["Points"].ToString();
+            }
         }
 
         private void cmbFloor_SelectionChangeCommitted(object sender, EventArgs e)
@@ -40,7 +44,7 @@ namespace KnowledgeDesk.CommonFrm.Car
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "FloorID=" + cmbFloor.SelectedValue.ToString();
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Room/QueryRoomByFloorID", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Room/QueryRoomByFloorID", strPost, "Get", ref strErr);
 
 
             this.cmbRoom.DataSource = result.DTData;
@@ -68,13 +72,29 @@ namespace KnowledgeDesk.CommonFrm.Car
             car.CarAnswer = this.txtAnswer.Text.Trim();
             car.FloorID =Convert.ToInt32(this.cmbFloor.SelectedValue);
             car.RoomID = Convert.ToInt32(this.cmbRoom.SelectedValue);
-            car.CreateUser = "Admin";
-            car.CreateTime = DateTime.Now;
-            car.IsStop = 0;
-            car.EmployeeID = 1;
-            car.Points = 0.8M;
+            if (CarID == 0)
+            {
+                car.CreateUser = "Admin";
+                car.CreateTime = DateTime.Now;
+                car.IsStop = 0;
+                car.EmployeeID = 1;
+                car.Points = 0.8M;
+            }
+            else
+            {
+                car.CarID = CarID;
+                car.Points = Convert.ToDecimal(this.lbPoints.Text);
+            }
             string strPost = JsonConvert.SerializeObject(car);
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Car/AddCar", strPost, "Post", ref strErr);
+            ExecResult result = null;
+            if (CarID == 0)
+            {
+                result= webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/AddCar", strPost, "Post", ref strErr);
+            }
+            else
+            {
+                result= webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/UpdateCar", strPost, "Post", ref strErr);
+            }
             if (result.Data[0].Success)
             {
                 MessageBox.Show(result.Data[0].Remark);

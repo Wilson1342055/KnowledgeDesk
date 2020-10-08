@@ -35,7 +35,7 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "EmployeeID=1&IsRandom=" + IsRandom.ToString();
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Car/GetCarAnswer", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/GetCarAnswer", strPost, "Get", ref strErr);
             DataTable dt = result.DTData;
             this.lbFloor.Text = dt.Rows[0]["FloorName"].ToString();
             this.lbRoom.Text = dt.Rows[0]["RoomName"].ToString();
@@ -59,7 +59,7 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
             string strPost = JsonConvert.SerializeObject(model);
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/AnswerInfo/AddAnswerInfo", strPost, "Post", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/AnswerInfo/AddAnswerInfo", strPost, "Post", ref strErr);
             if (result.Data[0].Success)
             {
                 this.lbAnswerID.Text = result.Data[0].DocumentNo;
@@ -85,7 +85,7 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
             string strPost = JsonConvert.SerializeObject(model);
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/AnswerInfo/UpdateAnswerInfo", strPost, "Post", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/AnswerInfo/UpdateAnswerInfo", strPost, "Post", ref strErr);
             if (result.Data[0].Success)
             {
                 //更新卡牌分数
@@ -104,8 +104,10 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
                         break;
 
                 }
+                car.CarQuestion = this.txtQuestion.Text;
+                car.CarAnswer = this.txtReal.Text;
                 string strPostCar = JsonConvert.SerializeObject(car);
-                ExecResult resultCar = webapi.ExecuteResultList("http://localhost:54072/api/Car/UpdateCar", strPostCar, "Post", ref strErr);
+                ExecResult resultCar = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/UpdateCar", strPostCar, "Post", ref strErr);
                 if (resultCar.Data[0].Success)
                 {
                     //设置宽度
@@ -164,7 +166,7 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
             car.CarID = Convert.ToInt32(this.lbCarID.Text);
             car.Points = 0.6M;
             string strPostCar = JsonConvert.SerializeObject(car);
-            ExecResult resultCar = webapi.ExecuteResultList("http://localhost:54072/api/Car/UpdateCar", strPostCar, "Post", ref strErr);
+            ExecResult resultCar = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/UpdateCar", strPostCar, "Post", ref strErr);
             if (resultCar.Data[0].Success)
             {
                 //设置宽度

@@ -35,7 +35,7 @@ namespace KnowledgeDesk.CommonFrm.Floor
             floor.CreateUser = "Admin";
             floor.CreateTime = DateTime.Now;
             string strPost = JsonConvert.SerializeObject(floor);
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Floor/AddFloor", strPost, "Post", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Floor/AddFloor", strPost, "Post", ref strErr);
             if(result.Data[0].Success)
             {
                 MessageBox.Show(result.Data[0].Remark);

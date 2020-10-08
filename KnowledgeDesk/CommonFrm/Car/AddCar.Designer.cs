@@ -38,6 +38,7 @@
             this.cmbRoom = new System.Windows.Forms.ComboBox();
             this.btnSure = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lbPoints = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -136,11 +137,23 @@
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // lbPoints
+            // 
+            this.lbPoints.AutoSize = true;
+            this.lbPoints.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbPoints.Location = new System.Drawing.Point(87, 448);
+            this.lbPoints.Name = "lbPoints";
+            this.lbPoints.Size = new System.Drawing.Size(49, 20);
+            this.lbPoints.TabIndex = 10;
+            this.lbPoints.Text = "分数";
+            this.lbPoints.Visible = false;
+            // 
             // AddCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 511);
+            this.Controls.Add(this.lbPoints);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSure);
             this.Controls.Add(this.cmbRoom);
@@ -172,5 +185,6 @@
         private System.Windows.Forms.ComboBox cmbRoom;
         private System.Windows.Forms.Button btnSure;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lbPoints;
     }
 }

@@ -15,6 +15,7 @@ namespace KnowledgeDesk.CommonFrm.Room
 {
     public partial class AddRoom : Form
     {
+        public int RoomID = 0;
         public AddRoom()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace KnowledgeDesk.CommonFrm.Room
                 MessageBox.Show("请填写所在楼层！");
                 return;
             }
+
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             RoomModel room = new RoomModel();
@@ -40,8 +42,17 @@ namespace KnowledgeDesk.CommonFrm.Room
             room.CreateUser = "Admin";
             room.CreateTime = DateTime.Now;
             room.FloorID = Convert.ToInt32(this.cmbFloor.SelectedValue);
+            room.RoomID = RoomID;
             string strPost = JsonConvert.SerializeObject(room);
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Room/AddRoom", strPost, "Post", ref strErr);
+            ExecResult result = null;
+            if (RoomID == 0)
+            {
+                result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Room/AddRoom", strPost, "Post", ref strErr);
+            }
+            else
+            {
+                result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Room/UpdateRoom", strPost, "Post", ref strErr);
+            }
             if(result.Data[0].Success)
             {
                 MessageBox.Show(result.Data[0].Remark);
@@ -65,13 +76,22 @@ namespace KnowledgeDesk.CommonFrm.Room
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "EmployeeID=1";
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Floor/QueryFloor", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Floor/QueryFloor", strPost, "Get", ref strErr);
 
 
             this.cmbFloor.DataSource = result.DTData;
             this.cmbFloor.DisplayMember = "楼层";
             this.cmbFloor.ValueMember = "FloorID";
             this.cmbFloor.SelectedIndex = -1;
+
+            if(RoomID!=0)
+            {
+                strPost = "RoomID="+RoomID.ToString();
+                ExecResult resultRoom = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Room/QueryRoomByID", strPost, "Get", ref strErr);
+                this.txtRoomName.Text = resultRoom.DTData.Rows[0]["RoomName"].ToString();
+                this.txtDes.Text= resultRoom.DTData.Rows[0]["RoomDesc"].ToString();
+                this.cmbFloor.SelectedValue= Convert.ToInt32(resultRoom.DTData.Rows[0]["FloorID"]);
+            }
         }
     }
 }

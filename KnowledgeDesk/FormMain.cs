@@ -66,11 +66,16 @@ namespace KnowledgeDesk
                     strFloorIDs += row.Cells["FloorID"].Value.ToString() + ",";
                 }
             }
+            if(string.IsNullOrEmpty(strFloorIDs))
+            {
+                MessageBox.Show("请选择楼层！");
+                return;
+            }
             //验证有没有房间
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "FloorID=" + strFloorIDs.TrimEnd(',');
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Room/QueryRoomByFloorID", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Room/QueryRoomByFloorID", strPost, "Get", ref strErr);
             if (result.DTData.Rows.Count > 0)
             {
                 MessageBox.Show("选择楼层中存在房间，操作失败");
@@ -78,9 +83,9 @@ namespace KnowledgeDesk
             }
             else
             {
-                ExecResult resultDel = webapi.ExecuteResultList("http://localhost:54072/api/Floor/DelFloor", strPost, "Get", ref strErr);
+                ExecResult resultDel = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Floor/DelFloor", strPost, "Get", ref strErr);
                 MessageBox.Show("操作成功");
-                QueryRoom();
+                QueryFloor();
             }
         }
         private void QueryCar()
@@ -88,9 +93,11 @@ namespace KnowledgeDesk
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "EmployeeID=1";
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Car/QueryCar", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/QueryCar", strPost, "Get", ref strErr);
 
             this.dgvCar.DataSource = result.DTData;
+            if (result.DTData.Columns.Count > 0)
+                this.dgvCar.Columns[1].Visible = false;
             AutoSize(dgvCar);
         }
         private void QueryFloor()
@@ -98,9 +105,11 @@ namespace KnowledgeDesk
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "EmployeeID=1";
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Floor/QueryFloor", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Floor/QueryFloor", strPost, "Get", ref strErr);
 
             this.dgvFloor.DataSource = result.DTData;
+            if (result.DTData.Columns.Count > 0)
+                this.dgvFloor.Columns[1].Visible = false;
             AutoSize(dgvFloor);
         }
 
@@ -109,10 +118,11 @@ namespace KnowledgeDesk
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "EmployeeID=1";
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Room/QueryRoom", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Room/QueryRoom", strPost, "Get", ref strErr);
 
             this.dgvRoom.DataSource = result.DTData;
-            this.dgvRoom.Columns[1].Visible = false;
+            if(result.DTData.Columns.Count>0)
+                this.dgvRoom.Columns[1].Visible = false;
             AutoSize(dgvRoom);
         }
 
@@ -141,7 +151,7 @@ namespace KnowledgeDesk
             KnowledgeDesk.ActionHelper.WebAPIHelper webapi = new ActionHelper.WebAPIHelper();
             string strErr = "";
             string strPost = "RoomIDs="+strRoomIDs.TrimEnd(',');
-            ExecResult result = webapi.ExecuteResultList("http://localhost:54072/api/Car/QueryCarByRoomIDs", strPost, "Get", ref strErr);
+            ExecResult result = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/QueryCarByRoomIDs", strPost, "Get", ref strErr);
             if(result.DTData.Rows.Count>0)
             {
                 MessageBox.Show("选择房间中存在卡牌，操作失败");
@@ -150,7 +160,7 @@ namespace KnowledgeDesk
             else
             {
                 string postpara = "IDs=" + strRoomIDs.TrimEnd(',') ;
-                ExecResult resultDel = webapi.ExecuteResultList("http://localhost:54072/api/Room/DelRoom", postpara, "Get", ref strErr);
+                ExecResult resultDel = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Room/DelRoom", postpara, "Get", ref strErr);
                 MessageBox.Show("操作成功");
                 QueryRoom();
             }
@@ -219,6 +229,51 @@ namespace KnowledgeDesk
             else
             {
                 cell.Value = true;
+            }
+        }
+
+        private void btnChangeFloor_Click(object sender, EventArgs e)
+        {
+            List<int> RoomIDs = new List<int>();
+            foreach (DataGridViewRow row in dgvRoom.Rows)
+            {
+                if (row.Cells["Selected"].Value != null && (bool)row.Cells["Selected"].Value)
+                {
+                    RoomIDs.Add(Convert.ToInt32(row.Cells["RoomID"].Value));
+                }
+            }
+            if(RoomIDs.Count!=1)
+            {
+                MessageBox.Show("只能选择一个房间！");
+                return;
+            }
+            AddRoom frm = new AddRoom();
+            frm.RoomID = RoomIDs.First();
+            if(frm.ShowDialog()==DialogResult.Yes)
+            {
+                QueryRoom();
+            }
+        }
+
+        private void btnUpdateCar_Click(object sender, EventArgs e)
+        {
+            List<int> CarIDs = new List<int>();
+            foreach (DataGridViewRow row in dgvCar.Rows)
+            {
+                if (row.Cells["Selected"].Value != null && (bool)row.Cells["Selected"].Value)
+                {
+                    CarIDs.Add(Convert.ToInt32(row.Cells["CarID"].Value));
+                }
+            }
+            if (CarIDs.Count != 1)
+            {
+                MessageBox.Show("只能选择单张卡牌！");
+                return;
+            }
+            AddCar frm = new AddCar();
+            if (frm.ShowDialog() == DialogResult.Yes)
+            {
+                QueryCar();
             }
         }
     }
