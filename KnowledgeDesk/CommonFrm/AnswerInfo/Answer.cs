@@ -43,6 +43,8 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
             this.txtReal.Text = dt.Rows[0]["CarAnswer"].ToString();
             this.lbCarID.Text = dt.Rows[0]["CarID"].ToString();
             this.lbPoints.Text = dt.Rows[0]["Points"].ToString();
+            this.lbFloorID.Text= dt.Rows[0]["FloorID"].ToString();
+            this.lbRoomID.Text = dt.Rows[0]["RoomID"].ToString();
             //设置宽度  414
             this.Width = 414;
         }
@@ -102,10 +104,11 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
                     case "完全掌握":
                         car.Points = Convert.ToDecimal(this.lbPoints.Text)+0.1M;
                         break;
-
                 }
                 car.CarQuestion = this.txtQuestion.Text;
                 car.CarAnswer = this.txtReal.Text;
+                car.RoomID = Convert.ToInt32(this.lbRoomID.Text);
+                car.FloorID = Convert.ToInt32(this.lbFloorID.Text);
                 string strPostCar = JsonConvert.SerializeObject(car);
                 ExecResult resultCar = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/UpdateCar", strPostCar, "Post", ref strErr);
                 if (resultCar.Data[0].Success)
@@ -165,6 +168,10 @@ namespace KnowledgeDesk.CommonFrm.AnswerInfo
             CarModel car = new CarModel();
             car.CarID = Convert.ToInt32(this.lbCarID.Text);
             car.Points = 0.6M;
+            car.CarQuestion = this.txtQuestion.Text;
+            car.CarAnswer = "";
+            car.RoomID = Convert.ToInt32(this.lbRoomID.Text);
+            car.FloorID = Convert.ToInt32(this.lbFloorID.Text);
             string strPostCar = JsonConvert.SerializeObject(car);
             ExecResult resultCar = webapi.ExecuteResultList("http://119.29.105.131:8099/api/Car/UpdateCar", strPostCar, "Post", ref strErr);
             if (resultCar.Data[0].Success)

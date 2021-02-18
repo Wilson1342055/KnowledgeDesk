@@ -45,6 +45,8 @@
             this.lbCarID = new System.Windows.Forms.Label();
             this.lbAnswerID = new System.Windows.Forms.Label();
             this.lbPoints = new System.Windows.Forms.Label();
+            this.lbFloorID = new System.Windows.Forms.Label();
+            this.lbRoomID = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbFloor
@@ -223,11 +225,33 @@
             this.lbPoints.Text = "Points";
             this.lbPoints.Visible = false;
             // 
+            // lbFloorID
+            // 
+            this.lbFloorID.AutoSize = true;
+            this.lbFloorID.Location = new System.Drawing.Point(471, 142);
+            this.lbFloorID.Name = "lbFloorID";
+            this.lbFloorID.Size = new System.Drawing.Size(47, 12);
+            this.lbFloorID.TabIndex = 17;
+            this.lbFloorID.Text = "FloorID";
+            this.lbFloorID.Visible = false;
+            // 
+            // lbRoomID
+            // 
+            this.lbRoomID.AutoSize = true;
+            this.lbRoomID.Location = new System.Drawing.Point(471, 168);
+            this.lbRoomID.Name = "lbRoomID";
+            this.lbRoomID.Size = new System.Drawing.Size(41, 12);
+            this.lbRoomID.TabIndex = 18;
+            this.lbRoomID.Text = "RoomID";
+            this.lbRoomID.Visible = false;
+            // 
             // Answer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(786, 458);
+            this.Controls.Add(this.lbRoomID);
+            this.Controls.Add(this.lbFloorID);
             this.Controls.Add(this.lbPoints);
             this.Controls.Add(this.lbAnswerID);
             this.Controls.Add(this.lbCarID);
@@ -273,5 +297,7 @@
         private System.Windows.Forms.Label lbCarID;
         private System.Windows.Forms.Label lbAnswerID;
         private System.Windows.Forms.Label lbPoints;
+        private System.Windows.Forms.Label lbFloorID;
+        private System.Windows.Forms.Label lbRoomID;
     }
 }
